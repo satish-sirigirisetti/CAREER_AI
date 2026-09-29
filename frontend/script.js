@@ -1,4 +1,6 @@
-const API_BASE_URL = 'http://localhost:8000';
+const isLocalFrontend = ['localhost', '127.0.0.1'].includes(window.location.hostname)
+  && window.location.port === '8001';
+const API_BASE_URL = isLocalFrontend ? 'http://localhost:8000' : '';
 const SESSION_KEY = 'skillmatch-demo-email';
 const sessionEmail = sessionStorage.getItem(SESSION_KEY);
 const form = document.getElementById('career-form');

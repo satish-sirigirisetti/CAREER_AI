@@ -124,28 +124,27 @@ The frontend opens at `login.html`. Enter a valid email address to continue to t
 python -m pip install -r backend/requirements.txt
 ```
 
-4. Start the backend:
+4. Start the app (FastAPI serves both the API and frontend):
 
 ```bash
 python -m uvicorn backend.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
-5. Start the frontend:
+5. Open:
 
-```bash
-python -m http.server 8001 --directory frontend
-```
-
-6. Open:
-
-- Frontend: http://localhost:8001
+- App: http://localhost:8000
 - Backend API: http://localhost:8000
+- API health check: http://localhost:8000/health
 
 ## API endpoint
 
 ### POST /predict
 
 This endpoint accepts the student profile and returns a recommended career with a roadmap and supporting details.
+
+## Deploy to Render
+
+The repository includes a `render.yaml` Blueprint for a single web service. In Render, create a new Blueprint deployment and connect this GitHub repository. Render installs the backend requirements, generates the demo model, and serves the frontend and API together. After deployment, open the service URL; the login page is the entry point. The login is a browser-session demo and is not secure authentication.
 
 ## Example request
 

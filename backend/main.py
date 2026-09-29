@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+from pathlib import Path
 from typing import Literal
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
+from fastapi.staticfiles import StaticFiles
 
 try:
     from backend.model import ensure_model_exists, predict_profile
@@ -12,6 +14,7 @@ except ModuleNotFoundError:  # pragma: no cover - direct script execution fallba
     from model import ensure_model_exists, predict_profile
 
 app = FastAPI(title="Career Recommendation API", version="1.0.0")
+FRONTEND_DIR = Path(__file__).resolve().parent.parent / "frontend"
 
 app.add_middleware(
     CORSMiddleware,
@@ -38,8 +41,8 @@ class StudentProfile(BaseModel):
     data_interest: int = Field(..., ge=1, le=10)
 
 
-@app.get("/")
-def root():
+@app.get("/health")
+def health():
     return {"message": "Career prediction API is running."}
 
 
@@ -54,6 +57,9 @@ def predict(profile: StudentProfile):
         raise HTTPException(status_code=400, detail=str(exc)) from exc
     except Exception as exc:  # pragma: no cover - defensive fallback for runtime issues
         raise HTTPException(status_code=500, detail=f"Prediction failed: {exc}") from exc
+
+
+app.mount("/", StaticFiles(directory=FRONTEND_DIR, html=True), name="frontend")
 
 
 if __name__ == "__main__":
