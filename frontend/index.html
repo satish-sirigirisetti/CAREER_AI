@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Career Assistant</title>
+    <script>
+      if (!sessionStorage.getItem('skillmatch-demo-email')) {
+        window.location.replace('login.html');
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="brand-block">
+          <div class="brand-mark">AI</div>
+          <div>
+            <p class="eyebrow">Career Intelligence</p>
+            <h1>SkillMatch Advisor</h1>
+          </div>
+        </div>
+        <div class="header-actions">
+          <div class="status-pill">Prototype Recommendation System</div>
+          <div class="session-controls">
+            <span id="session-email" class="session-email"></span>
+            <button id="logout-btn" class="logout-btn" type="button">Sign out</button>
+          </div>
+        </div>
+      </header>
+
+      <main class="content-grid">
+        <section class="panel form-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Student profile</p>
+            <h2>Build your career snapshot</h2>
+          </div>
+
+          <form id="career-form" class="career-form">
+            <div class="field-grid">
+              <div class="field">
+                <label for="interested_field">Interested field</label>
+                <select id="interested_field" name="interested_field">
+                  <option value="AI/ML">AI/ML</option>
+                  <option value="Data Science">Data Science</option>
+                  <option value="Software Development">Software Development</option>
+                  <option value="Cybersecurity">Cybersecurity</option>
+                  <option value="Web Development">Web Development</option>
+                  <option value="General">General</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="python_skill">Python skill</label>
+                <input id="python_skill" name="python_skill" type="range" min="1" max="10" value="7" />
+                <div class="slider-value"><span>7</span></div>
+              </div>
+
+              <div class="field">
+                <label for="ml_skill">Machine Learning skill</label>
+                <input id="ml_skill" name="ml_skill" type="range" min="1" max="10" value="5" />
+                <div class="slider-value"><span>5</span></div>
+              </div>
+
+              <div class="field">
+                <label for="sql_skill">SQL skill</label>
+                <input id="sql_skill" name="sql_skill" type="range" min="1" max="10" value="6" />
+                <div class="slider-value"><span>6</span></div>
+              </div>
+
+              <div class="field">
+                <label for="deep_learning_skill">Deep Learning skill</label>
+                <input id="deep_learning_skill" name="deep_learning_skill" type="range" min="1" max="10" value="4" />
+                <div class="slider-value"><span>4</span></div>
+              </div>
+
+              <div class="field">
+                <label for="web_dev_skill">Web Development skill</label>
+                <input id="web_dev_skill" name="web_dev_skill" type="range" min="1" max="10" value="5" />
+                <div class="slider-value"><span>5</span></div>
+              </div>
+
+              <div class="field">
+                <label for="cybersecurity_skill">Cybersecurity skill</label>
+                <input id="cybersecurity_skill" name="cybersecurity_skill" type="range" min="1" max="10" value="3" />
+                <div class="slider-value"><span>3</span></div>
+              </div>
+
+              <div class="field">
+                <label for="statistics_skill">Statistics skill</label>
+                <input id="statistics_skill" name="statistics_skill" type="range" min="1" max="10" value="6" />
+                <div class="slider-value"><span>6</span></div>
+              </div>
+
+              <div class="field">
+                <label for="communication_skill">Communication skill</label>
+                <input id="communication_skill" name="communication_skill" type="range" min="1" max="10" value="7" />
+                <div class="slider-value"><span>7</span></div>
+              </div>
+
+              <div class="field">
+                <label for="problem_solving_skill">Problem-solving skill</label>
+                <input id="problem_solving_skill" name="problem_solving_skill" type="range" min="1" max="10" value="8" />
+                <div class="slider-value"><span>8</span></div>
+              </div>
+
+              <div class="field compact-field">
+                <label for="cgpa">CGPA</label>
+                <input id="cgpa" name="cgpa" type="number" min="0" max="10" step="0.1" value="8.4" />
+              </div>
+
+              <div class="field compact-field">
+                <label for="ai_interest">AI interest</label>
+                <input id="ai_interest" name="ai_interest" type="number" min="1" max="10" step="1" value="8" />
+              </div>
+
+              <div class="field compact-field">
+                <label for="data_interest">Data interest</label>
+                <input id="data_interest" name="data_interest" type="number" min="1" max="10" step="1" value="7" />
+              </div>
+            </div>
+
+            <div class="action-row">
+              <button id="submit-btn" type="submit" class="primary-btn">
+                Analyze My Career
+              </button>
+            </div>
+          </form>
+
+          <div id="form-message" class="form-message" aria-live="polite"></div>
+        </section>
+
+        <section class="panel result-panel" id="result-panel">
+          <div class="result-header">
+            <p class="eyebrow">Career outcome</p>
+            <h2>Recommendation dashboard</h2>
+          </div>
+
+          <div id="result-content" class="result-content empty-state">
+            <div class="empty-card">
+              <div class="empty-icon">◎</div>
+              <h3>Ready for analysis</h3>
+              <p>Enter your profile on the left and run the recommendation engine.</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

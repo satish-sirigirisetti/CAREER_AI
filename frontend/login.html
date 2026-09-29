@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#090c0a" />
+    <title>Sign in | SkillMatch Advisor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="login-page">
+    <main class="login-layout">
+      <section class="login-intro" aria-labelledby="login-title">
+        <a class="login-brand" href="login.html" aria-label="SkillMatch Advisor home">
+          <span class="brand-mark">AI</span>
+          <span>SkillMatch Advisor</span>
+        </a>
+        <div class="intro-copy">
+          <p class="eyebrow">Career intelligence for students</p>
+          <h1 id="login-title">Find the direction your skills are pointing.</h1>
+          <p class="intro-description">Get a career recommendation and a practical learning roadmap built around what you already know.</p>
+        </div>
+        <div class="login-proof"><span class="proof-dot"></span> Prototype recommendation system</div>
+      </section>
+
+      <section class="login-side" aria-labelledby="welcome-title">
+        <form class="login-card" id="login-form">
+          <p class="eyebrow">Demo access</p>
+          <h2 id="welcome-title">Welcome back</h2>
+          <p class="login-description">Enter your email to open your career workspace.</p>
+
+          <label for="login-email">Student email</label>
+          <input id="login-email" name="email" type="email" placeholder="you@college.edu" autocomplete="email" required />
+          <p id="login-error" class="login-error" role="alert" aria-live="polite"></p>
+
+          <button class="primary-btn login-submit" type="submit">Continue to advisor <span aria-hidden="true">&rarr;</span></button>
+          <p class="demo-note">Demo sign-in only. Your email stays in this browser session; no password or account is stored.</p>
+        </form>
+      </section>
+    </main>
+    <script src="login.js"></script>
+  </body>
+</html>
